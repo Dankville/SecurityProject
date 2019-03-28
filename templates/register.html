@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% from "_formhelpers.html" import render_field %}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</head>
+<body>
+    <h1>Register</h1>
+
+    <form method="POST" action="/register">
+        {{ form.csrf_token }}
+        {{ render_field(form.username) }}
+        {{ render_field(form.email) }}
+        {{ render_field(form.password) }}
+        {{ render_field(form.confirm) }}
+        {{ render_field(form.twoFactorAuthEnabled) }}
+        {{ render_field(form.twoFactorAuthKey) }}
+        <input type="submit" value="Register">
+        <a href="/"><input type="button" value="Cancel"></a>
+    </form>
+</body>
+</html>
+
+<script>
+    if (!document.getElementById('twoFactorAuthKey').checked){
+        document.getElementById('twoFactorAuthKey').disabled = true
+    }
+    document.getElementById('twoFactorAuthEnabled').onchange = function(){
+        document.getElementById('twoFactorAuthKey').disabled = !this.checked;
+    }
+</script>
+    

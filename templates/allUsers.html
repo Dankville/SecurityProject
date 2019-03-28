@@ -1,0 +1,8 @@
+<h1>All users</h1>
+
+<ul>
+{% for user in allUsers %}
+    <li>username: {{ user.username }}, email: {{ user.email }}</li>
+{% endfor %}
+</ul>
+<a href="/"><input type="button" value="Cancel"></a>

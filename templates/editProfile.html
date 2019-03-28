@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% from "_formhelpers.html" import render_field %}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</head>
+<body>
+    <h1> Edit Profile </h1>
+
+    <form method="POST" action="/editProfile">
+        {{ form.csrf_token }}
+        {{ render_field(form.username) }}
+        {{ render_field(form.email) }}
+        {{ render_field(form.password) }}
+        {{ render_field(form.confirm) }}
+        <br>
+        {{ render_field(form.old_password) }}
+        <input type="submit" value="Edit">
+        <a href="/profile"><input type="button" value="Cancel"></a>
+    </form>
+</body>
+</html>

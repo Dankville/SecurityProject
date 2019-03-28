@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% from "_formhelpers.html" import render_field %}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</head>
+<body>
+    <h1>Login</h1>
+    
+    <form method="POST" action="/login">
+        {{ form.csrf_token }}
+        {{ render_field(form.username) }}
+        {{ render_field(form.password) }}
+        {% if loginError %}
+            <ul>
+                <li class="errors">{{ loginError }}</li>
+            </ul>
+        {% endif %}
+        <input type="submit" value="Login">
+        <a href="/"><input type="button" value="Cancel"></a>
+    </form>
+
+</body>
+</html>

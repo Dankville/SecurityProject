@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% from "_formhelpers.html" import render_field %}
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Profile</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    </head>
+
+    <body>
+        <form method="POST" action="/twoFactorAuth">
+            {{ form.csrf_token }}
+            {{ render_field(form.verify) }}
+            {% if error %}
+                <ul>
+                    <li class="errors">{{ error }}</li>
+                </ul>
+            {% endif %}
+            <input type="submit" value="Verify">
+            <a href="/"><input type="button" value="Cancel"></a>
+        </form>
+    </body>
+</html>
